@@ -1,0 +1,21 @@
+{
+  "name": "enviguration",
+  "version": "0.1.0",
+  "description": "Env-var-to-config-object generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/stuartpb/enviguration.git"
+  },
+  "keywords": [
+    "configuration",
+    "environment",
+    "config",
+    "env"
+  ],
+  "author": "Stuart P. Bentley",
+  "license": "BSD"
+}
