@@ -16,6 +16,6 @@
     "config",
     "env"
   ],
-  "author": "Stuart P. Bentley",
+  "author": "Stuart P. Bentley <stuart@testtrack4.com>",
   "license": "BSD"
 }
