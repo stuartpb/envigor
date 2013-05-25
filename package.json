@@ -1,5 +1,5 @@
 {
-  "name": "enviguration",
+  "name": "envigor",
   "version": "0.1.0",
   "description": "Env-var-to-config-object generator",
   "main": "index.js",
