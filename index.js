@@ -42,7 +42,7 @@ module.exports = function (opts) {
     || aws_access_key || aws_secret) {
 
     cfg.s3 = {
-      accessKey: env.S3_ACCESS_KEY || aws_access_key,
+      accessKey: env.S3_ACCESS_KEY || env.S3_KEY || aws_access_key,
       secret: env.S3_SECRET || env.S3_SECRET_KEY || aws_secret,
       bucket: env.S3_BUCKET || env.S3_BUCKET_NAME,
       endpoint: env.S3_ENDPOINT || (opts.defaults &&
