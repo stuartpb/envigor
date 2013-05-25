@@ -60,6 +60,8 @@ for a server to listen on.
   || `POSTMARK_API_KEY` || `SENDGRID_PASSWORD`
   || `MAILGUN_SMTP_PASSWORD`
 - **pass:** Same as **password** (to match [Nodemailer][]).
+- **service:** `SMTP_SERVICE` || 'mandrill', 'postmark', 'sendgrid', or
+  'mailgun', depending on which service (if any) is being used.
 
 ### mongodb
 

@@ -10,11 +10,11 @@ module.exports = function (opts) {
       url: env.MONGODB_URL || env.MONGOLAB_URI || env.MONGOHQ_URL
     };
     if (env.MONGOLAB_URI) {
-      cfg.mongodb.service = cfg.mongo.service || 'mongolab';
+      cfg.mongodb.service = cfg.mongodb.service || 'mongolab';
       cfg.mongolab = {url: env.MONGOLAB_URI, uri: env.MONGOLAB_URI};
     }
     if (env.MONGOHQ_URL) {
-      cfg.mongodb.service = cfg.mongo.service || 'mongohq';
+      cfg.mongodb.service = cfg.mongodb.service || 'mongohq';
       cfg.mongohq = {url: env.MONGOHQ_URL};
     }
   }
