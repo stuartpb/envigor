@@ -53,13 +53,20 @@ for a server to listen on.
 
 **Provided by:** mandrill, postmark, sendgrid, mailgun
 
-- **username:** `SMTP_USERNAME` || `MANDRILL_USERNAME` || `POSTMARK_API_KEY`
-  || `SENDGRID_USERNAME` || `MAILGUN_SMTP_LOGIN`
+- **username:** `SMTP_USERNAME` || mandrill.username || postmark.apiKey
+  || sendgrid.username || mailgun.smtp.username
 - **user:** Same as **username** (to match [Nodemailer][]).
-- **password:** `SMTP_PASSWORD` || `MANDRILL_APIKEY`
-  || `POSTMARK_API_KEY` || `SENDGRID_PASSWORD`
-  || `MAILGUN_SMTP_PASSWORD`
+- **password:** `SMTP_PASSWORD` || mandrill.apiKey || postmark.apiKey
+  || sendgrid.password || mailgun.smtp.password
 - **pass:** Same as **password** (to match [Nodemailer][]).
+- **hostname:** `SMTP_HOSTNAME` || `SMTP_HOST` || `SMTP_SERVER`
+  || 'smtp.mandrillapp.com' (mandrill) || 'smtp.postmarkapp.com' (postmark)
+  || 'smtp.sendgrid.net' (sendgrid)
+  || (mailgun.smtp.hostname || 'smtp.mailgun.org') (mailgun)
+- **host:** Same as **hostname** (to match [Nodemailer][]).
+- **server:** Same as **hostname** (to match `SMTP_SERVER`).
+- **port:** `SMTP_PORT` || '587' (mandrill, sendgrid) || '2525' (postmark)
+  || (mailgun.smtp.port || '587') (mailgun)
 - **service:** `SMTP_SERVICE` || 'mandrill', 'postmark', 'sendgrid', or
   'mailgun', depending on which service (if any) is being used.
 
@@ -67,7 +74,7 @@ for a server to listen on.
 
 **Provided by:** mongolab, mongohq
 
-- **url:** `MONGODB_URL` || `MONGOLAB_URI` || `MONGOHQ_URL`
+- **url:** `MONGODB_URL` || mongolab.url || mongohq.url
 
 ## Service-specific options
 
@@ -76,23 +83,23 @@ for a server to listen on.
 Amazon Web Services
 
 - **accessKey**: `AWS_ACCESS_KEY_ID` || `AWS_ACCESS_KEY`
-- **secret**: `env.AWS_SECRET` || `env.AWS_SECRET_KEY`
+- **secret**: `AWS_SECRET` || `AWS_SECRET_KEY` || `AWS_SECRET_ACCESS_KEY`
 
 ### s3
 
 Amazon's ubiquitous S3 service.
 
-- **accessKey**: `S3_ACCESS_KEY` || `S3_KEY` || the accessKey value for AWS
-- **secret**: `S3_SECRET` || `S3_SECRET_KEY` || the secret value for AWS
+- **accessKey**: `S3_ACCESS_KEY` || `S3_KEY` || aws.accessKey
+- **secret**: `S3_SECRET` || `S3_SECRET_KEY` || aws.secret
 - **bucket**: `S3_BUCKET` || `S3_BUCKET_NAME`
-- **endpoint**: `S3_ENDPOINT` || "s3.amazonaws.com"
+- **endpoint**: `S3_ENDPOINT` || 's3.amazonaws.com'
 
 ### facebook
 
 Facebook App configuration
 
 - **appId**: `FACEBOOK_APP_ID`
-- **secret**: `FACEBOOK_SECRET` || `FACEBOOK_APP_SECRET` || the secret value for AWS
+- **secret**: `FACEBOOK_SECRET` || `FACEBOOK_APP_SECRET`
 
 ### mandrill
 
@@ -141,12 +148,16 @@ The Mailgun Automation Engine.
 
 ### mongolab
 
+MongoLab MongoDB-as-a-Service - https://mongolab.com/
+
 **Provides:** mongodb
 
 - **url:** `MONGOLAB_URI`
 - **uri:** Same as **url** (to match `MONGOLAB_URI`).
 
 ### mongohq
+
+http://mongohq.com
 
 **Provides:** mongodb
 
