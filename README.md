@@ -140,6 +140,10 @@ Facebook App configuration
 
 - **appId**: `FACEBOOK_APP_ID`
 - **secret**: `FACEBOOK_SECRET` || `FACEBOOK_APP_SECRET`
+- **clientID**: Same as **appId** (to match [passport-facebook][]).
+- **clientSecret**: Same as **secret** (to match [passport-facebook][]).
+
+[passport-facebook]: https://github.com/jaredhanson/passport-facebook
 
 ### mandrill
 

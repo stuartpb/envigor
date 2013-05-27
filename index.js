@@ -30,6 +30,8 @@ module.exports = function (opts) {
       appId: env.FACEBOOK_APP_ID,
       secret: env.FACEBOOK_SECRET || env.FACEBOOK_APP_SECRET
     };
+    cfg.facebook.clientID = cfg.facebook.appId;
+    cfg.facebook.clientSecret = cfg.facebook.secret;
   }
 
   // Amazon Web Services
