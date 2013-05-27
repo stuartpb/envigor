@@ -13,6 +13,43 @@ Feel free to submit patches to add any service / interface you know well enough
 to configure. Before doing so, try to get a feel for how things tend to be
 laid out by looking over the rest of the documentation and code.
 
+## Usage
+
+Say you're making an Express app with MongoDB, that you're writing for a
+service like Heroku, with addons like MongoLab to provide service
+
+```bash
+npm install --save envigor mongodb
+```
+
+server.js:
+```js
+var http = require('http')
+var cfg = require('envigor')();
+
+var app = require('./app.js')(cfg);
+http.createServer(app).listen(cfg.port || 5000, function() {
+  console.log("Listening on " + port);
+});
+```
+
+app.js:
+```js
+var express = require('express');
+module.exports = function(cfg){
+  var app = express();
+
+  mongodb.MongoClient.connect(cfg.mongodb.url,function(err,db){
+    if(err) throw err; else app.set('db',db)
+  }
+
+  // ...your routes here...
+
+  return app;
+}
+```
+
+
 ## Names
 
 The conventional names for the configuration variables queried for are based on
@@ -55,10 +92,10 @@ for a server to listen on.
 
 - **username:** `SMTP_USERNAME` || mandrill.username || postmark.apiKey
   || sendgrid.username || mailgun.smtp.username
-- **user:** Same as **username** (to match [Nodemailer][]).
+- **user, auth.user:** Same as **username** (to match [Nodemailer][]).
 - **password:** `SMTP_PASSWORD` || mandrill.apiKey || postmark.apiKey
   || sendgrid.password || mailgun.smtp.password
-- **pass:** Same as **password** (to match [Nodemailer][]).
+- **pass, auth.pass:** Same as **password** (to match [Nodemailer][]).
 - **hostname:** `SMTP_HOSTNAME` || `SMTP_HOST` || `SMTP_SERVER`
   || 'smtp.mandrillapp.com' (mandrill) || 'smtp.postmarkapp.com' (postmark)
   || 'smtp.sendgrid.net' (sendgrid)

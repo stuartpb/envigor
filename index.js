@@ -134,6 +134,7 @@ module.exports = function (opts) {
 
     cfg.smtp.user = cfg.smtp.username;
     cfg.smtp.pass = cfg.smtp.password;
+    cfg.smtp.auth = {user: cfg.smtp.username, pass: cfg.smtp.password};
     cfg.smtp.host = cfg.smtp.hostname;
     cfg.smtp.server = cfg.smtp.hostname;
   }
