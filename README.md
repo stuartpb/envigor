@@ -256,6 +256,8 @@ Redis Cloud powered by Garantia Data - http://redis-cloud.com/
 **Provides:** redis
 
 - **url:** `REDISCLOUD_URL`
+- **hostname, password, port, database:** Parsed from **url**.
+  See the section on 'redis'.
 
 ### redistogo
 
@@ -264,6 +266,8 @@ Redis Cloud powered by Garantia Data - http://redis-cloud.com/
 **Provides:** redis
 
 - **url:** `REDISTOGO_URL`
+- **hostname, password, port, database:** Parsed from **url**.
+  See the section on 'redis'.
 
 ### myredis
 
@@ -272,6 +276,8 @@ Redis Cloud powered by Garantia Data - http://redis-cloud.com/
 **Provides:** redis
 
 - **url:** `MYREDIS_URL`
+- **hostname, password, port, database:** Parsed from **url**.
+  See the section on 'redis'.
 
 ### openredis
 
@@ -280,6 +286,8 @@ https://openredis.com/
 **Provides:** redis
 
 - **url:** `OPENREDIS_URL`
+- **hostname, password, port, database:** Parsed from **url**.
+  See the section on 'redis'.
 
 ### redisgreen
 
@@ -288,3 +296,5 @@ Dedicated Redis hosting - http://www.redisgreen.net/
 **Provides:** redis
 
 - **url:** `REDISGREEN_URL`
+- **hostname, password, port, database:** Parsed from **url**.
+  See the section on 'redis'.
