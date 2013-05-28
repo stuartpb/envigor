@@ -34,6 +34,18 @@ module.exports = function (opts) {
     cfg.facebook.clientSecret = cfg.facebook.secret;
   }
 
+  // Twitter
+  if (env.TWITTER_CONSUMER_KEY || env.TWITTER_KEY
+    || env.TWITTER_CONSUMER_SECRET || env.TWITTER_SECRET) {
+
+    cfg.twitter = {
+      key: env.TWITTER_CONSUMER_KEY || env.TWITTER_KEY,
+      secret: env.TWITTER_CONSUMER_SECRET || env.TWITTER_SECRET
+    };
+    cfg.twitter.consumerKey = cfg.twitter.key;
+    cfg.twitter.consumerSecret = cfg.twitter.secret;
+  }
+
   // Amazon Web Services
   if (env.AWS_ACCESS_KEY_ID || env.AWS_ACCESS_KEY || env.AWS_SECRET
     || env.AWS_SECRET_KEY || env.AWS_SECRET_ACCESS_KEY) {

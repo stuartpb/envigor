@@ -148,6 +148,17 @@ Facebook App configuration
 
 [passport-facebook]: https://github.com/jaredhanson/passport-facebook
 
+### twitter
+
+Twitter application OAuth credentials
+
+- **key**: `TWITTER_CONSUMER_KEY` || `TWITTER_KEY`
+- **secret**: `TWITTER_CONSUMER_SECRET` || `TWITTER_SECRET`
+- **consumerKey**: Same as **key** (to match [passport-twitter][]).
+- **consumerSecret**: Same as **secret** (to match [passport-twitter][]).
+
+[passport-twitter]: https://github.com/jaredhanson/passport-twitter
+
 ### mandrill
 
 Mandrill by MailChimp
