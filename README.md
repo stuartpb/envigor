@@ -82,6 +82,10 @@ one service that provides a specific interface has a defined configuration,
 precedence is defined in an arbitrary order roughly based on who I like best
 (the order used in this documentation).
 
+Default values are provided when part of a service is configured but not the
+others, like an SMTP service without a hostname. However, objects and defaults
+are not constructed if no service is specified.
+
 ## Generalized configuration options
 
 ### port
@@ -115,6 +119,30 @@ for a server to listen on.
 **Provided by:** mongolab, mongohq
 
 - **url:** `MONGODB_URL` || mongolab.url || mongohq.url
+- **service:** `MONGODB_SERVICE` || 'mongolab' or 'mongohq', depending on which
+  service (if any) is being used.
+
+### redis
+
+**Provided by:** rediscloud, redistogo, myredis, openredis, redisgreen
+
+- **url:** `REDIS_URL` || rediscloud.url || redistogo.url || myredis.url
+  || openredis.url || redisgreen.url || constructed, see next section
+- **service:** `REDIS_SERVICE` || 'rediscloud', 'redistogo', 'myredis',
+  'openredis', or 'redisgreen', depending on which service (if any) is being
+  used.
+
+Redis uses URLs of the convention `redis://database:password@hostname:port`.
+If **url** is determined from the sources described above, envigor will parse
+these components from that URL. Otherwise, the following parameters will be
+taken from the specified environment variables and the **url** will be
+constructed from their values.
+
+- **hostname:** `REDIS_HOSTNAME` || `REDIS_HOST` || `REDIS_SERVER`
+  || 'localhost'
+- **port:** `REDIS_PORT` || '6379'
+- **password:** `REDIS_PASSWORD`
+- **database:** `REDIS_DATABASE`
 
 ## Service-specific options
 
@@ -161,7 +189,7 @@ Twitter application OAuth credentials
 
 ### mandrill
 
-Mandrill by MailChimp
+[Mandrill](http://mandrill.com/) by MailChimp
 
 **Provides:** smtp
 
@@ -188,7 +216,7 @@ SendGrid (http://sendgrid.com)
 
 ### mailgun
 
-The Mailgun Automation Engine.
+[Mailgun](http://www.mailgun.com/): Programmable Mail Servers
 
 **Provides:** smtp
 
@@ -220,3 +248,43 @@ http://mongohq.com
 **Provides:** mongodb
 
 - **url:** `MONGOHQ_URL`
+
+### rediscloud
+
+Redis Cloud powered by Garantia Data - http://redis-cloud.com/
+
+**Provides:** redis
+
+- **url:** `REDISCLOUD_URL`
+
+### redistogo
+
+[Redis To Go](http://redistogo.com/) Simple Redis Hosting
+
+**Provides:** redis
+
+- **url:** `REDISTOGO_URL`
+
+### myredis
+
+[MyRedis](http://myredis.com/)
+
+**Provides:** redis
+
+- **url:** `MYREDIS_URL`
+
+### openredis
+
+https://openredis.com/
+
+**Provides:** redis
+
+- **url:** `OPENREDIS_URL`
+
+### redisgreen
+
+Dedicated Redis hosting - http://www.redisgreen.net/
+
+**Provides:** redis
+
+- **url:** `REDISGREEN_URL`
