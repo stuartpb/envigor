@@ -130,9 +130,12 @@ Amazon Web Services
 Amazon's ubiquitous S3 service.
 
 - **accessKey**: `S3_ACCESS_KEY` || `S3_KEY` || aws.accessKey
+- **key:** Same as **accessKey** (to match [knox][]).
 - **secret**: `S3_SECRET` || `S3_SECRET_KEY` || aws.secret
 - **bucket**: `S3_BUCKET` || `S3_BUCKET_NAME`
 - **endpoint**: `S3_ENDPOINT` || 's3.amazonaws.com'
+
+[knox]: https://github.com/LearnBoost/knox
 
 ### facebook
 

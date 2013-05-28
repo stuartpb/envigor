@@ -58,6 +58,7 @@ module.exports = function (opts) {
       bucket: env.S3_BUCKET || env.S3_BUCKET_NAME,
       endpoint: env.S3_ENDPOINT || 's3.amazonaws.com'
     };
+    cfg.s3.key = cfg.s3.accessKey;
   }
 
   // Mail services
