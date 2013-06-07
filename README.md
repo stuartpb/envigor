@@ -187,6 +187,14 @@ Twitter application OAuth credentials
 
 [passport-twitter]: https://github.com/jaredhanson/passport-twitter
 
+### twilio
+
+The [Twilio](http://www.twilio.com) cloud communications platform
+
+- **accountSid**: `TWILIO_ACCOUNT_SID`
+- **authToken**: `TWILIO_AUTH_TOKEN`
+- **number**: `TWILIO_NUMBER`
+
 ### mandrill
 
 [Mandrill](http://mandrill.com/) by MailChimp
