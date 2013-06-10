@@ -11,6 +11,8 @@ function decomposeRedisUrl(obj){
 
   //although none of the five services use it, this is redis-url's behavior
   obj.database = authPair[0];
+
+  return obj;
 }
 
 module.exports = function (opts) {
