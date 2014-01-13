@@ -8,6 +8,7 @@ module.exports = function (env) {
     cfg.database = {url: env.DATABASE_URL};
   }
 
+  require('./lib/cfg/cors.js')(env, cfg);
   require('./lib/cfg/email.js')(env, cfg);
   require('./lib/cfg/memcache.js')(env, cfg);
   require('./lib/cfg/mysql.js')(env, cfg);

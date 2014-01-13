@@ -100,6 +100,28 @@ are not constructed if no service is specified.
 The value of the almost-inescapable `PORT` variable, used for setting the port
 for a server to listen on.
 
+### cors
+
+Headers for Cross-Origin Resource Sharing. Goes great with
+[ach](https://github.com/stuartpb/ach).
+
+**Aliased as:** accessControl
+
+Note that allowOrigin and possibly maxAge are the only CORS configuration
+parameters that are likely to be deployment-specific, and as such are the only
+variables you should be setting through the environment / `envigor()`. While
+the rest are gathered by envigor, it's mostly for symmetry; they're more likely
+to be specific to your code, and as such should be ignored / clobbered by
+static strings when you set up CORS.
+
+- **allowOrigin:** `CORS_ALLOW_ORIGIN` || `ACCESS_CONTROL_ALLOW_ORIGIN`
+- **allowCredentials:**
+  `CORS_ALLOW_CREDENTIALS` || `ACCESS_CONTROL_ALLOW_CREDENTIALS`
+- **exposeHeaders:** `CORS_EXPOSE_HEADERS` || `ACCESS_CONTROL_EXPOSE_HEADERS`
+- **maxAge:** `CORS_MAX_AGE` || `ACCESS_CONTROL_MAX_AGE`
+- **allowMethods:** `CORS_ALLOW_METHODS` || `ACCESS_CONTROL_ALLOW_METHODS`
+- **allowHeaders:** `CORS_ALLOW_METHODS` || `ACCESS_CONTROL_ALLOW_METHODS`
+
 ### smtp
 
 **Provided by:** mandrill, postmark, sendgrid, mailgun
