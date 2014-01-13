@@ -143,6 +143,9 @@ constructed from their values.
 - **password:** `REDIS_PASSWORD`
 - **database:** `REDIS_DATABASE`
 
+You can also set `DEFAULT_REDIS` to populate `redis` with all the default
+values.
+
 ### memcache
 
 **Provided by:** memcachier
@@ -153,6 +156,9 @@ constructed from their values.
 - **username:** `MEMCACHE_USERNAME` || `MEMCACHIER_USERNAME`
 - **password:** `MEMCACHE_PASSWORD` || `MEMCACHIER_PASSWORD`
 - **service**: `MEMCACHE_SERVICE` || 'memcachier', if using MemCachier.
+
+You can also set `DEFAULT_MEMCACHE` to populate `memcache` with all the default
+values.
 
 ### mysql
 
@@ -168,14 +174,6 @@ constructed from their values.
 **Aliased as:** amqp
 
 - **url:** `RABBITMQ_URL` || `AMQP_URL` || `RABBITMQ_TX_URL` ||
-  `AMQP_TX_URL` || `RABBITMQ_RX_URL` || `AMQP_RX_URL` ||
-  `RABBITMQ_BIGWIG_TX_URL` || `RABBITMQ_BIGWIG_RX_URL` || `CLOUDAMQP_URL`
-- **tx.url:** `RABBITMQ_TX_URL` || `AMQP_TX_URL` || `RABBITMQ_BIGWIG_TX_URL` ||
-  `RABBITMQ_URL` || `AMQP_URL` || `CLOUDAMQP_URL` || `RABBITMQ_RX_URL` ||
-  `AMQP_RX_URL` || `RABBITMQ_BIGWIG_RX_URL`
-- **rx.url:** `RABBITMQ_RX_URL` || `AMQP_RX_URL` || `RABBITMQ_BIGWIG_RX_URL` ||
-  `RABBITMQ_URL` || `AMQP_URL` || `CLOUDAMQP_URL` || `RABBITMQ_TX_URL` ||
-  `AMQP_TX_URL` || `RABBITMQ_BIGWIG_TX_URL || `AMQP_URL` || `RABBITMQ_TX_URL` ||
   `AMQP_TX_URL` || `RABBITMQ_RX_URL` || `AMQP_RX_URL` ||
   `RABBITMQ_BIGWIG_TX_URL` || `RABBITMQ_BIGWIG_RX_URL` || `CLOUDAMQP_URL`
 - **tx.url:** `RABBITMQ_TX_URL` || `AMQP_TX_URL` || `RABBITMQ_BIGWIG_TX_URL` ||
