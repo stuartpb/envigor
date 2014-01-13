@@ -178,14 +178,18 @@ values.
 
 ### memcache
 
-**Provided by:** memcachier
+**Provided by:** memcachier, memcachedcloud
 
 - **servers:** (`MEMCACHE_SERVERS` || `MEMCACHIER_SERVERS`
-  || 'localhost:11211'), split on semicolons and commas into an array.
-  To reconstruct the string, use `memcache.servers.join(',')`.
+  || `MEMCACHEDCLOUD_SERVERS` || 'localhost:11211'), split on semicolons and
+  commas into an array. To reconstruct the string, use
+  `memcache.servers.join(',')`.
 - **username:** `MEMCACHE_USERNAME` || `MEMCACHIER_USERNAME`
+  || `MEMCACHEDCLOUD_USERNAME` 
 - **password:** `MEMCACHE_PASSWORD` || `MEMCACHIER_PASSWORD`
-- **service**: `MEMCACHE_SERVICE` || 'memcachier', if using MemCachier.
+  || `MEMCACHEDCLOUD_PASSWORD` 
+- **service**: `MEMCACHE_SERVICE` || 'memcachier' or 'memcachedcloud',
+  depending on which service (if any) is being used.
 
 You can also set `DEFAULT_MEMCACHE` to populate `memcache` with all the default
 values.
@@ -443,3 +447,14 @@ Database For Your MySQL Applications
   array. To reconstruct the string, use `memcachier.servers.join()`.
 - **username:** `MEMCACHIER_USERNAME`
 - **password:** `MEMCACHIER_PASSWORD`
+
+### memcachedcloud
+
+Memcached Cloud powered by Garantia Data - http://garantiadata.com/memcached
+
+**Provides:** memcache
+
+- **servers:** `MEMCACHEDCLOUD_SERVERS`, split on semicolons and commas into an
+  array. To reconstruct the string, use `memcachedcloud.servers.join()`.
+- **username:** `MEMCACHEDCLOUD_USERNAME`
+- **password:** `MEMCACHEDCLOUD_PASSWORD`
