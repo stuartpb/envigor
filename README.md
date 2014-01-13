@@ -1,11 +1,19 @@
 # envigor
 
-envigor is a module that creates a configuration object based on what
-environment variables are available. This is useful for consolidating possible
-configuration options for apps that run in
+envigor is a module that creates configuration objects for several
+modules and backing services based on what environment variables are available.
 
-(It was originally 'enviguration', which made equally no sense and was
-consequently thrown out for being needlessly long.)
+This is useful for automatically deciding configuration options for
+[twelve-factor apps](http://12factor.net/) that run in environments like
+Heroku, where several different choices of addon can be provisioned to provide
+the same service: calling `envigor` will check the environment variables for
+all known services (and a general set of variables for any services that may be
+set up manually / in-house), then create a config object that will run that
+service regardless of provider (envigor objects can usually be passed directly
+to the setup function of multiple drivers).
+
+(It was originally named 'enviguration', which made as little sense as
+'envigor' and was consequently thrown out for being needlessly long.)
 
 ## Contributing
 
