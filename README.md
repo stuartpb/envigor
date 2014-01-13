@@ -52,7 +52,6 @@ module.exports = function(cfg){
 }
 ```
 
-
 ## Names
 
 The conventional names for the configuration variables queried for are based on
@@ -143,6 +142,78 @@ constructed from their values.
 - **port:** `REDIS_PORT` || '6379'
 - **password:** `REDIS_PASSWORD`
 - **database:** `REDIS_DATABASE`
+
+### memcache
+
+**Provided by:** memcachier
+
+- **servers:** (`MEMCACHE_SERVERS` || `MEMCACHIER_SERVERS`
+  || 'localhost:11211'), split on semicolons and commas into an array.
+  To reconstruct the string, use `memcache.servers.join(',')`.
+- **username:** `MEMCACHE_USERNAME` || `MEMCACHIER_USERNAME`
+- **password:** `MEMCACHE_PASSWORD` || `MEMCACHIER_PASSWORD`
+- **service**: `MEMCACHE_SERVICE` || 'memcachier', if using MemCachier.
+
+### mysql
+
+**Provided by:** cleardb
+
+- **url:** `MYSQL_URL` || `CLEARDB_DATABASE_URL`
+- **service**: `MYSQL_SERVICE` || 'cleardb', if using ClearDB.
+
+### rabbitmq
+
+**Provided by:** rabbitmqBigwig, cloudamqp
+
+**Aliased as:** amqp
+
+- **url:** `RABBITMQ_URL` || `AMQP_URL` || `RABBITMQ_TX_URL` ||
+  `AMQP_TX_URL` || `RABBITMQ_RX_URL` || `AMQP_RX_URL` ||
+  `RABBITMQ_BIGWIG_TX_URL` || `RABBITMQ_BIGWIG_RX_URL` || `CLOUDAMQP_URL`
+- **tx.url:** `RABBITMQ_TX_URL` || `AMQP_TX_URL` || `RABBITMQ_BIGWIG_TX_URL` ||
+  `RABBITMQ_URL` || `AMQP_URL` || `CLOUDAMQP_URL` || `RABBITMQ_RX_URL` ||
+  `AMQP_RX_URL` || `RABBITMQ_BIGWIG_RX_URL`
+- **rx.url:** `RABBITMQ_RX_URL` || `AMQP_RX_URL` || `RABBITMQ_BIGWIG_RX_URL` ||
+  `RABBITMQ_URL` || `AMQP_URL` || `CLOUDAMQP_URL` || `RABBITMQ_TX_URL` ||
+  `AMQP_TX_URL` || `RABBITMQ_BIGWIG_TX_URL || `AMQP_URL` || `RABBITMQ_TX_URL` ||
+  `AMQP_TX_URL` || `RABBITMQ_RX_URL` || `AMQP_RX_URL` ||
+  `RABBITMQ_BIGWIG_TX_URL` || `RABBITMQ_BIGWIG_RX_URL` || `CLOUDAMQP_URL`
+- **tx.url:** `RABBITMQ_TX_URL` || `AMQP_TX_URL` || `RABBITMQ_BIGWIG_TX_URL` ||
+  `RABBITMQ_URL` || `AMQP_URL` || `CLOUDAMQP_URL` || `RABBITMQ_RX_URL` ||
+  `AMQP_RX_URL` || `RABBITMQ_BIGWIG_RX_URL`
+- **rx.url:** `RABBITMQ_RX_URL` || `AMQP_RX_URL` || `RABBITMQ_BIGWIG_RX_URL` ||
+  `RABBITMQ_URL` || `AMQP_URL` || `CLOUDAMQP_URL` || `RABBITMQ_TX_URL` ||
+  `AMQP_TX_URL` || `RABBITMQ_BIGWIG_TX_URL``
+- **service:** `RABBITMQ_SERVICE` || `AMQP_SERVICE` || 'rabbitmqBigwig' or
+  'cloudamqp', depending on which service (if any) is being used.
+
+### rethinkdb
+
+- **url:** `RETHINKDB_URL`
+
+### postgresql
+
+- **url:** `POSTGRESQL_URL`
+
+Note that, while DATABASE_URL is conventionally used to refer to a PostgreSQL
+database on Heroku, envigor **does not** use DATABASE_URL as a fallback
+name for the PostgreSQL URL. If you wish to have this behavior, add this
+line after your call to require('envigor')();
+
+```
+cfg.postgresql = cfg.postgresql || cfg.database;
+```
+
+### database
+
+- **url:** `DATABASE_URL`
+
+Use of `database` / `DATABASE_URL` is discouraged, and is included primarily
+for the use of applications with legacy configuration schemas.
+
+Note that, while DATABASE_URL is conventionally used to refer to a PostgreSQL
+database on Heroku, envigor **does not** use DATABASE_URL as a fallback
+name for the PostgreSQL URL. See the section on `postgresql`.
 
 ## Service-specific options
 
@@ -306,3 +377,41 @@ Dedicated Redis hosting - http://www.redisgreen.net/
 - **url:** `REDISGREEN_URL`
 - **hostname, password, port, database:** Parsed from **url**.
   See the section on 'redis'.
+
+### rabbitmqBigwig
+
+RabbitMQ Bigwig - https://rabbitmq-bigwig.lshift.net/
+
+**Provides:** rabbitmq
+
+- **url:** `RABBITMQ_BIGWIG_TX_URL`
+- **tx.url**: `RABBITMQ_BIGWIG_TX_URL`
+- **rx.url**: `RABBITMQ_BIGWIG_RX_URL`
+
+### cloudamqp
+
+[CloudAMQP](http://www.cloudamqp.com/) | RabbitMQ as a Service
+
+**Provides:** rabbitmq (amqp)
+
+- **url:** `CLOUDAMQP_URL`
+
+### cleardb
+
+[ClearDB](http://www.cleardb.com/) - The Ultra Reliable, Geo Distributed Cloud
+Database For Your MySQL Applications
+
+**Provides:** mysql
+
+- **url:** `CLEARDB_DATABASE_URL`
+
+### memcachier
+
+[MemCachier](https://www.memcachier.com/)
+
+**Provides:** memcache
+
+- **servers:** `MEMCACHIER_SERVERS`, split on semicolons and commas into an
+  array. To reconstruct the string, use `memcachier.servers.join()`.
+- **username:** `MEMCACHIER_USERNAME`
+- **password:** `MEMCACHIER_PASSWORD`

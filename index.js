@@ -1,7 +1,7 @@
 var env = process.env;
 var url = require('url');
 
-function decomposeRedisUrl(obj){
+function decomposeRedisUrl(obj) {
   var parts = url.parse(obj.url);
   var authPair = parts.auth.split(':');
 
@@ -18,7 +18,100 @@ function decomposeRedisUrl(obj){
 module.exports = function (opts) {
   var cfg = {};
 
-  cfg.port = env.PORT;
+  cfg.port = env.PORT || env.VCAP_APP_PORT;
+
+  // Memcache
+  if (env.MEMCACHIER_SERVERS || env.MEMCACHIER_USERNAME
+    || env.MEMCACHIER_PASSWORD) {
+    cfg.memcachier = {
+      servers: env.MEMCACHIER_SERVERS && env.MEMCACHIER_SERVERS.split(/[,;]/g),
+      username: env.MEMCACHIER_USERNAME,
+      password: env.MEMCACHIER_PASSWORD
+    };
+  }
+
+  if (env.MEMCACHE_SERVERS || env.MEMCACHE_SERVICE
+    || env.MEMCACHE_USERNAME || env.MEMCACHE_PASSWORD || cfg.memcachier) {
+
+    cfg.memcache = {
+      servers: env.MEMCACHE_SERVERS && env.MEMCACHE_SERVERS.split(/[,;]/g)
+        || (cfg.memcachier && cfg.memcachier.servers)
+        || ['localhost:11211'],
+      username: env.MEMCACHE_USERNAME
+        || (cfg.memcachier && cfg.memcachier.username),
+      password: env.MEMCACHE_PASSWORD
+        || (cfg.memcachier && cfg.memcachier.password),
+      service: env.MEMCACHE_SERVICE
+        || (cfg.memcachier && 'memcachier')
+    };
+  }
+
+  // MySQL
+  if (env.CLEARDB_DATABASE_URL) {
+    cfg.cleardb = {url: env.CLEARDB_DATABASE_URL};
+  }
+
+  if (env.MYSQL_URL || env.CLEARDB_DATABASE_URL) {
+    cfg.mysql = {
+      url: env.MYSQL_URL || env.CLEARDB_DATABASE_URL,
+      service: env.MYSQL_SERVICE || (cfg.cleardb && 'cleardb')
+    };
+  }
+
+  // PostgreSQL
+  if (env.POSTGRESQL_URL) {
+    cfg.postgresql = {url: env.POSTGRESQL_URL};
+  }
+
+  // "Database"
+  if (env.DATABASE_URL) {
+    cfg.database = {url: env.DATABASE_URL};
+  }
+
+  // RabbitMQ
+  if (env.RABBITMQ_BIGWIG_TX_URL || env.RABBITMQ_BIGWIG_RX_URL) {
+    cfg.rabbitmqBigwig = {
+      url: env.RABBITMQ_BIGWIG_TX_URL,
+      tx: {url: env.RABBITMQ_BIGWIG_TX_URL},
+      rx: {url: env.RABBITMQ_BIGWIG_RX_URL}
+    };
+  }
+
+  if (env.CLOUDAMQP_URL) {
+    cfg.cloudamqp = {
+      url: env.CLOUDAMQP_URL
+    };
+  }
+
+  if (env.RABBITMQ_URL || env.AMQP_URL || env.RABBITMQ_SERVICE
+    || env.AMQP_SERVICE || cfg.rabbitmqBigwig || cfg.cloudamqp) {
+
+    cfg.rabbitmq = {
+      url: env.RABBITMQ_URL || env.AMQP_URL
+        || env.RABBITMQ_TX_URL || env.AMQP_TX_URL
+        || env.RABBITMQ_RX_URL || env.AMQP_RX_URL
+        || env.RABBITMQ_BIGWIG_TX_URL || env.RABBITMQ_BIGWIG_RX_URL
+        || env.CLOUDAMQP_URL,
+      service: env.RABBITMQ_SERVICE || env.AMQP_SERVICE
+        || (cfg.rabbitmqBigwig && 'rabbitmqBigwig')
+        || (cfg.cloudamqp && 'cloudamqp'),
+      tx: {
+        url: env.RABBITMQ_TX_URL || env.AMQP_TX_URL
+          || env.RABBITMQ_BIGWIG_TX_URL
+          || env.RABBITMQ_URL || env.AMQP_URL
+          || env.CLOUDAMQP_URL
+          || env.RABBITMQ_RX_URL || env.AMQP_RX_URL
+          || env.RABBITMQ_BIGWIG_RX_URL},
+      rx: {
+        url: env.RABBITMQ_RX_URL || env.AMQP_RX_URL
+          || env.RABBITMQ_BIGWIG_RX_URL
+          || env.RABBITMQ_URL || env.AMQP_URL
+          || env.CLOUDAMQP_URL
+          || env.RABBITMQ_TX_URL || env.AMQP_TX_URL
+          || env.RABBITMQ_BIGWIG_TX_URL}
+    };
+    cfg.amqp = cfg.rabbitmq;
+  }
 
   // MongoDB
   if (env.MONGOLAB_URI) {
