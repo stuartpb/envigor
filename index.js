@@ -31,7 +31,8 @@ module.exports = function (opts) {
   }
 
   if (env.MEMCACHE_SERVERS || env.MEMCACHE_SERVICE
-    || env.MEMCACHE_USERNAME || env.MEMCACHE_PASSWORD || cfg.memcachier) {
+    || env.MEMCACHE_USERNAME || env.MEMCACHE_PASSWORD || cfg.memcachier
+    || env.DEFAULT_MEMCACHE) {
 
     cfg.memcache = {
       servers: env.MEMCACHE_SERVERS && env.MEMCACHE_SERVERS.split(/[,;]/g)
@@ -158,7 +159,8 @@ module.exports = function (opts) {
     || env.REDIS_HOST || env.REDIS_SERVER || env.REDIS_PASSWORD
     || env.REDIS_DATABASE || env.REDIS_PORT
     || cfg.rediscloud || cfg.redistogo || cfg.myredis || cfg.openredis
-    || cfg.redisgreen) {
+    || cfg.redisgreen
+    || env.DEFAULT_REDIS) {
 
     cfg.redis = {
       url: env.REDIS_URL
