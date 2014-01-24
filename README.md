@@ -15,12 +15,6 @@ to the setup function of multiple drivers).
 (It was originally named 'enviguration', which made as little sense as
 'envigor' and was consequently thrown out for being needlessly long.)
 
-## Contributing
-
-Feel free to submit patches to add any service / interface you know well enough
-to configure. Before doing so, try to get a feel for how things tend to be
-laid out by looking over the rest of the documentation and code.
-
 ## Usage
 
 Say you're making an Express app with MongoDB, that you're writing for a
