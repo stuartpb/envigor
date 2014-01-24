@@ -162,7 +162,7 @@ taken from the specified environment variables and the **url** will be
 constructed from their values.
 
 - **hostname:** `REDIS_HOSTNAME` || `REDIS_HOST` || `REDIS_SERVER`
-  || 'localhost'
+  || `REDIS_IP` || 'localhost'
 - **port:** `REDIS_PORT` || '6379'
 - **password:** `REDIS_PASSWORD`
 - **database:** `REDIS_DATABASE`
@@ -179,9 +179,9 @@ values.
   commas into an array. To reconstruct the string, use
   `memcache.servers.join(',')`.
 - **username:** `MEMCACHE_USERNAME` || `MEMCACHIER_USERNAME`
-  || `MEMCACHEDCLOUD_USERNAME` 
+  || `MEMCACHEDCLOUD_USERNAME`
 - **password:** `MEMCACHE_PASSWORD` || `MEMCACHIER_PASSWORD`
-  || `MEMCACHEDCLOUD_PASSWORD` 
+  || `MEMCACHEDCLOUD_PASSWORD`
 - **service**: `MEMCACHE_SERVICE` || 'memcachier' or 'memcachedcloud',
   depending on which service (if any) is being used.
 
