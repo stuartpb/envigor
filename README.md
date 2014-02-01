@@ -87,19 +87,17 @@ Default values are provided when part of a service is configured but not the
 others, like an SMTP service without a hostname. However, objects and defaults
 are not constructed if no service is specified.
 
-## Generalized configuration options
+## Base configuration options
 
-### port
+In `index.js`, envigor only adds `port`, the value of the almost-inescapable
+`PORT` variable, used for setting the port for a server to listen on.
 
-The value of the almost-inescapable `PORT` variable, used for setting the port
-for a server to listen on.
+Every other object in envigor is set by a script in `lib/cfg`:
 
-### cors
+## cors
 
 Headers for Cross-Origin Resource Sharing. Goes great with
 [ach](https://github.com/stuartpb/ach).
-
-**Aliased as:** accessControl
 
 Note that allowOrigin and possibly maxAge are the only CORS configuration
 parameters that are likely to be deployment-specific, and as such are the only
@@ -108,17 +106,20 @@ the rest are gathered by envigor, it's mostly for symmetry; they're more likely
 to be specific to your code, and as such should be ignored / clobbered by
 static strings when you set up CORS.
 
-- **allowOrigin:** `CORS_ALLOW_ORIGIN` || `ACCESS_CONTROL_ALLOW_ORIGIN`
-- **allowCredentials:**
-  `CORS_ALLOW_CREDENTIALS` || `ACCESS_CONTROL_ALLOW_CREDENTIALS`
-- **exposeHeaders:** `CORS_EXPOSE_HEADERS` || `ACCESS_CONTROL_EXPOSE_HEADERS`
-- **maxAge:** `CORS_MAX_AGE` || `ACCESS_CONTROL_MAX_AGE`
-- **allowMethods:** `CORS_ALLOW_METHODS` || `ACCESS_CONTROL_ALLOW_METHODS`
-- **allowHeaders:** `CORS_ALLOW_METHODS` || `ACCESS_CONTROL_ALLOW_METHODS`
+**Adds:** cors, accessControl (alias of cors)
+
+- `allowOrigin`
+- `allowCredentials`
+- `exposeHeaders`
+- `maxAge`
+- `allowMethods`
+- `allowHeaders`
+
+## email
+
+**Adds:** smtp, mandrill, postmark, sendgrid, mailgun
 
 ### smtp
-
-**Provided by:** mandrill, postmark, sendgrid, mailgun
 
 - **username:** `SMTP_USERNAME` || mandrill.username || postmark.apiKey
   || sendgrid.username || mailgun.smtp.username
@@ -137,23 +138,76 @@ static strings when you set up CORS.
 - **service:** `SMTP_SERVICE` || 'mandrill', 'postmark', 'sendgrid', or
   'mailgun', depending on which service (if any) is being used.
 
-### mongodb
+### mandrill
 
-**Provided by:** mongolab, mongohq
+[Mandrill](http://mandrill.com/) by MailChimp
 
-- **url:** `MONGODB_URL` || mongolab.url || mongohq.url
-- **service:** `MONGODB_SERVICE` || 'mongolab' or 'mongohq', depending on which
-  service (if any) is being used.
+**Provides:** smtp
+
+- **username:** `MANDRILL_USERNAME`
+- **password:** `MANDRILL_APIKEY`
+
+### postmark
+
+https://postmarkapp.com
+
+**Provides:** smtp
+
+- **apiKey:** `POSTMARK_API_KEY`
+- **inboundAddress:** `POSTMARK_INBOUND_ADDRESS`
+
+### sendgrid
+
+SendGrid (http://sendgrid.com)
+
+**Provides:** smtp
+
+- **username:** `SENDGRID_USERNAME`
+- **password:** `SENDGRID_PASSWORD`
+
+### mailgun
+
+[Mailgun](http://www.mailgun.com/): Programmable Mail Servers
+
+**Provides:** smtp
+
+- **apiKey:** `MAILGUN_API_KEY`
+- **smtp**:
+    - **username:** `MAILGUN_SMTP_LOGIN`
+    - **user:** Same as **username** (to match [Nodemailer][]).
+    - **login:** Same as **username** (to match `MAILGUN_SMTP_LOGIN`).
+    - **password:** `MAILGUN_SMTP_PASSWORD`
+    - **pass:** Same as **password** (to match [Nodemailer][]).
+    - **hostname:** `MAILGUN_SMTP_SERVER`
+    - **host:** Same as **hostname** (to match [Nodemailer][]).
+    - **server:** Same as **hostname** (to match `MAILGUN_SMTP_SERVER`).
+    - **port:** `MAILGUN_SMTP_PORT`
+
+## mongodb
+
+**Adds:** mongodb, mongolab, mongohq
+
+For each relevant service:
+
+- `url`
+
+For the base mongodb object:
+
+- `service`: if `MONGODB_SERVICE` is set or one of the services is the source
+  of `url`.
 
 ### redis
 
-**Provided by:** rediscloud, redistogo, myredis, openredis, redisgreen
+**Adds:** redis, rediscloud, redistogo, myredis, openredis, redisgreen
 
-- **url:** `REDIS_URL` || rediscloud.url || redistogo.url || myredis.url
-  || openredis.url || redisgreen.url || constructed, see next section
-- **service:** `REDIS_SERVICE` || 'rediscloud', 'redistogo', 'myredis',
-  'openredis', or 'redisgreen', depending on which service (if any) is being
-  used.
+For each relevant service:
+
+- `url`
+
+For the base redis object:
+
+- `service`: if `REDIS_SERVICE` is set or one of the services is the source
+  of `url`.
 
 Redis uses URLs of the convention `redis://database:password@hostname:port`.
 If **url** is determined from the sources described above, envigor will parse
@@ -291,51 +345,6 @@ The [Twilio](http://www.twilio.com) cloud communications platform
 - **accountSid**: `TWILIO_ACCOUNT_SID`
 - **authToken**: `TWILIO_AUTH_TOKEN`
 - **number**: `TWILIO_NUMBER`
-
-### mandrill
-
-[Mandrill](http://mandrill.com/) by MailChimp
-
-**Provides:** smtp
-
-- **username:** `MANDRILL_USERNAME`
-- **password:** `MANDRILL_APIKEY`
-
-### postmark
-
-https://postmarkapp.com
-
-**Provides:** smtp
-
-- **apiKey:** `POSTMARK_API_KEY`
-- **inboundAddress:** `POSTMARK_INBOUND_ADDRESS`
-
-### sendgrid
-
-SendGrid (http://sendgrid.com)
-
-**Provides:** smtp
-
-- **username:** `SENDGRID_USERNAME`
-- **password:** `SENDGRID_PASSWORD`
-
-### mailgun
-
-[Mailgun](http://www.mailgun.com/): Programmable Mail Servers
-
-**Provides:** smtp
-
-- **apiKey:** `MAILGUN_API_KEY`
-- **smtp**:
-    - **username:** `MAILGUN_SMTP_LOGIN`
-    - **user:** Same as **username** (to match [Nodemailer][]).
-    - **login:** Same as **username** (to match `MAILGUN_SMTP_LOGIN`).
-    - **password:** `MAILGUN_SMTP_PASSWORD`
-    - **pass:** Same as **password** (to match [Nodemailer][]).
-    - **hostname:** `MAILGUN_SMTP_SERVER`
-    - **host:** Same as **hostname** (to match [Nodemailer][]).
-    - **server:** Same as **hostname** (to match `MAILGUN_SMTP_SERVER`).
-    - **port:** `MAILGUN_SMTP_PORT`
 
 ### mongolab
 
