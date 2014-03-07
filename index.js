@@ -16,6 +16,7 @@ module.exports = function (env) {
   require('./lib/cfg/rabbitmq.js')(env, cfg);
   require('./lib/cfg/mongodb.js')(env, cfg);
   require('./lib/cfg/redis.js')(env, cfg);
+  require('./lib/cfg/rethinkdb.js')(env, cfg);
   require('./lib/cfg/bitcoin.js')(env, cfg);
   require('./lib/cfg/facebook.js')(env, cfg);
   require('./lib/cfg/twitter.js')(env, cfg);

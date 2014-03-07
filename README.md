@@ -215,7 +215,14 @@ values.
 
 ### rethinkdb
 
-- **url:** `RETHINKDB_URL`
+- **hostname:** `RETHINKDB_HOST` || `RDB_HOST`
+- **host:** same as `hostname` (to match official driver / `RDB_HOST`).
+- **port:** `RETHINKDB_PORT` || `RDB_PORT`
+- **database:** `RETHINKDB_DATABASE` || `RDB_DB`
+- **db:** same as `database` (to match official driver / `RDB_DB`).
+- **table:** `RETHINKDB_TABLE` || `RDB_TABLE`
+- **authKey:** `RETHINKDB_AUTH` || `RDB_AUTH`
+- **auth:** same as `authKey` (to match `RDB_AUTH`).
 
 ### postgresql
 
