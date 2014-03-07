@@ -77,7 +77,7 @@ Configurations that include services define a general configuration hash (such
 as `cfg.redis`) in addition to all their services. If no specific values are
 listed for the general configuration, it will use the first-listed service that
 is defined in the environment for the definitions of the general configuration,
-which will also include a `service` field with the name of that service.
+which will also include a `.service` field with the name of that service.
 
 Default values are provided when part of a service is configured but not the
 others, like an SMTP service without a hostname. However, objects and defaults
@@ -106,12 +106,12 @@ static strings when you set up CORS.
 
 **Adds:** cors, accessControl (alias of cors)
 
-- `allowOrigin`
-- `allowCredentials`
-- `exposeHeaders`
-- `maxAge`
-- `allowMethods`
-- `allowHeaders`
+- allowOrigin
+- allowCredentials
+- exposeHeaders
+- maxAge
+- allowMethods
+- allowHeaders
 
 ## email
 
@@ -119,43 +119,43 @@ static strings when you set up CORS.
 
 ### smtp
 
-- `username`, `user`, `auth.user`
-- `password`, `pass`, `auth.pass`
-- `hostname`, `host`, `server`
-- `port`
-- `service`
+- username, user, auth.user
+- password, pass, auth.pass
+- hostname, host, server
+- port
+- service
 
 ### mandrill
 
 [Mandrill](http://mandrill.com/) by MailChimp
 
-- `username`
-- `apiKey`, `password`
+- username
+- apiKey, password
 
 ### postmark
 
 https://postmarkapp.com
 
-- `apiKey`
-- `inboundAddress`
+- apiKey
+- inboundAddress
 
 ### sendgrid
 
 SendGrid (http://sendgrid.com)
 
-- `username`
-- `password`
+- username
+- password
 
 ### mailgun
 
 [Mailgun](http://www.mailgun.com/): Programmable Mail Servers
 
-- `apiKey`
-- `smtp`
-  - `username`, `user`, `login`
-  - `password`, `pass`
-  - `hostname`, `host`, `server`
-  - `port`
+- apiKey
+- smtp
+  - username, user, login
+  - password, pass
+  - hostname, host, server
+  - port
 
 ## mongodb
 
@@ -164,8 +164,7 @@ SendGrid (http://sendgrid.com)
 [mongolab]: https://mongolab.com/
 [mongohq]: http://mongohq.com
 
-- `url`
-- `uri` (alias of `url` for mongolab only)
+- url, uri
 
 ## redis
 
@@ -178,17 +177,17 @@ SendGrid (http://sendgrid.com)
 [openredis]: https://openredis.com/
 [redisgreen]: http://www.redisgreen.net/
 
-- `url`
-- `hostname`
-- `port`
-- `password`
-- `database`
+- url
+- hostname
+- port
+- password
+- database
 
-The individual fields will by default be gathered from `url` using the form
-`redis://database:password@hostname:port` if `url` is defined: if not, `url`
+The individual fields will by default be gathered from url using the form
+`redis://database:password@hostname:port` if url is defined: if not, url
 will be constructed from these fields.
 
-You can also set `DEFAULT_REDIS` to populate `redis` with all the default
+You can also set `DEFAULT_REDIS` to populate redis with all the default
 values.
 
 ## memcache
@@ -198,10 +197,10 @@ values.
 [memcachier]: https://www.memcachier.com/
 [memcachedcloud]: http://garantiadata.com/memcached
 
-- `servers`, as an array split on semicolons and commas in the defined
+- servers, as an array split on semicolons and commas in the defined
   variable. To reconstruct the string, use `servers.join(',')`.
-- `username`
-- `password`
+- username
+- password
 
 You can also set `DEFAULT_MEMCACHE` to populate `memcache` with all the default
 values.
@@ -212,7 +211,7 @@ values.
 
 [cleardb]: http://www.cleardb.com/
 
-- `url`
+- url
 
 ## rabbitmq
 
@@ -221,28 +220,28 @@ values.
 [rabbitmqBigwig]: https://rabbitmq-bigwig.lshift.net/
 [cloudamqp]: http://www.cloudamqp.com/
 
-`rabbitmq` is also aliased as `amqp`.
+rabbitmq is also aliased as amqp.
 
-- `url`
-- `tx.url`
-- `rx.url`
+- url
+- tx.url
+- rx.url
 
 ## rethinkdb
 
-- `hostname`, `host`, `server`
-- `port`
-- `database`, `db`
-- `authKey`, `auth`
-- `table`
+- hostname, host, server
+- port
+- database, db
+- authKey, auth
+- table
 
 ## postgresql
 
-- `url`
+- url
 
-Note that, while DATABASE_URL is conventionally used to refer to a PostgreSQL
-database on Heroku, envigor **does not** use DATABASE_URL as a fallback
+Note that, while `DATABASE_URL` is conventionally used to refer to a PostgreSQL
+database on Heroku, envigor **does not** use `DATABASE_URL` as a fallback
 name for the PostgreSQL URL. If you wish to have this behavior, add this
-line after your call to require('envigor')();
+line after your call to `require('envigor')();`.
 
 ```
 cfg.postgresql = cfg.postgresql || cfg.database;
@@ -251,13 +250,13 @@ cfg.postgresql = cfg.postgresql || cfg.database;
 ## database
 
 The "database" hash, if present, contains the content of `env.DATABASE_URL` in
-its `url` field.
+its url field.
 
-Use of `database` / `DATABASE_URL` is discouraged, and is included primarily
+Use of "database" / `DATABASE_URL` is discouraged, and is included primarily
 for the use of applications with legacy configuration schemas.
 
-Note that, while DATABASE_URL is conventionally used to refer to a PostgreSQL
-database on Heroku, envigor **does not** use DATABASE_URL as a fallback
+Note that, while `DATABASE_URL` is conventionally used to refer to a PostgreSQL
+database on Heroku, envigor **does not** use `DATABASE_URL` as a fallback
 name for the PostgreSQL URL. See the section on `postgresql`.
 
 ## bitcoin
@@ -266,10 +265,10 @@ RPC interfaces for cryptocurrency daemons patterned after bitcoind
 
 **Adds:** bitcoin, litecoin, dogecoin
 
-- `hostname`, `host`
-- `port`
-- `username`, `user`
-- `password`, `pass`
+- hostname, host
+- port
+- username, user
+- password, pass
 
 ## amazonaws
 
@@ -279,34 +278,34 @@ Amazon Web Services
 
 ### aws
 
-- `accessKey`
-- `secret`
+- accessKey
+- secret
 
 ### s3
 
-- `accessKey`, `key`
-- `secret`
-- `bucket`
-- `endpoint`
+- accessKey, key
+- secret
+- bucket
+- endpoint
 
 ## facebook
 
 Facebook App configuration
 
-- `appId`, `clientId`
-- `secret`, `clientSecret`
+- appId, clientId
+- secret, clientSecret
 
 ## twitter
 
 Twitter application OAuth credentials
 
-- `key`, `consumerKey`
-- `secret`, `consumerSecret`
+- key, consumerKey
+- secret, consumerSecret
 
 ## twilio
 
 The [Twilio](http://www.twilio.com) cloud communications platform
 
-- `accountSid`
-- `authToken`
-- `number`
+- accountSid
+- authToken
+- number
