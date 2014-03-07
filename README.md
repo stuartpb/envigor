@@ -104,7 +104,7 @@ the rest are gathered by envigor, it's mostly for symmetry; they're more likely
 to be specific to your code, and as such should be ignored / clobbered by
 static strings when you set up CORS.
 
-**Adds:** cors, accessControl (alias of cors)
+cors is also aliased as accessControl.
 
 - allowOrigin
 - allowCredentials
