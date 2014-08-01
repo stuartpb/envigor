@@ -1,6 +1,6 @@
 {
   "name": "envigor",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Env-var-to-config-object generator",
   "main": "index.js",
   "scripts": {
