@@ -309,3 +309,10 @@ The [Twilio](http://www.twilio.com) cloud communications platform
 - accountSid
 - authToken
 - number
+
+## recaptcha
+
+reCAPTCHA - http://www.google.com/recaptcha
+
+- privateKey
+- publicKey
