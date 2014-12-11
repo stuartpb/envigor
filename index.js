@@ -3,6 +3,7 @@ module.exports = function (env) {
   var cfg = {};
 
   cfg.port = env.PORT || env.VCAP_APP_PORT;
+  cfg.ip = env.IP;
 
   if (env.DATABASE_URL) {
     cfg.database = {url: env.DATABASE_URL};
