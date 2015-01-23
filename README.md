@@ -159,7 +159,7 @@ SendGrid (http://sendgrid.com)
 
 ## mongodb
 
-**Services:** [mongolab][], [mongohq][] / compose
+**Services:** [mongolab][], [mongohq][] (aliased as compose.mongodb)
 
 [mongolab]: https://mongolab.com/
 [mongohq]: https://www.compose.io/
