@@ -213,6 +213,15 @@ values.
 
 - url
 
+## neo4j
+
+**Services:** [graphenedb][], [graphstory][]
+
+[graphenedb]: http://www.graphenedb.com/
+[graphstory]: http://graphstory.com/
+
+- url
+
 ## rabbitmq
 
 **Services:** [rabbitmqBigwig][], [cloudamqp][]
