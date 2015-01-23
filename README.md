@@ -14,7 +14,7 @@ to the setup function of multiple drivers).
 
 ## Usage
 
-Say you're making an Express app with MongoDB, that you're writing for a
+Say you're making an Express app with MongoDB, tmhat you're writing for a
 service like Heroku, with addons like MongoLab to provide your more general
 services like MongoDB. By using envigor, you can set your app up to find a
 configured MongoDB service with complete service agnosticism:
@@ -159,10 +159,10 @@ SendGrid (http://sendgrid.com)
 
 ## mongodb
 
-**Services:** [mongolab][], [mongohq][]
+**Services:** [mongolab][], [mongohq][] / compose
 
 [mongolab]: https://mongolab.com/
-[mongohq]: http://mongohq.com
+[mongohq]: https://www.compose.io/
 
 - url, uri
 
