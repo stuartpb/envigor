@@ -243,6 +243,10 @@ rabbitmq is also aliased as amqp.
 - authKey, auth
 - table
 
+## arangodb
+
+- url
+
 ## postgresql
 
 - url
