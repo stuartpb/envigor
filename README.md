@@ -14,7 +14,7 @@ to the setup function of multiple drivers).
 
 ## Usage
 
-Say you're making an Express app with MongoDB, tmhat you're writing for a
+Say you're making an Express app with MongoDB, that you're writing for a
 service like Heroku, with addons like MongoLab to provide your more general
 services like MongoDB. By using envigor, you can set your app up to find a
 configured MongoDB service with complete service agnosticism:
@@ -51,6 +51,20 @@ module.exports = function(cfg){
 }
 ```
 
+With envigor, the structure of the app server is so common and lightweight that
+it is provided as a binary with the library named `envigorate`. Using
+`envigorate`, the only scaffolding you need to run an app is, in package.json:
+
+```json
+  "main": "app.js",
+  "scripts": {
+    "start": "envigorate"
+  }
+```
+
+(And you can technically leave out that first line if you use `index.js`
+instead of `app.js`.)
+
 ## Names
 
 The conventional names for the configuration variables queried for are based on
@@ -83,10 +97,16 @@ Default values are provided when part of a service is configured but not the
 others, like an SMTP service without a hostname. However, objects and defaults
 are not constructed if no service is specified.
 
-## Base configuration options
+# Configuration
 
-In `index.js`, envigor only adds `port`, the value of the almost-inescapable
-`PORT` variable, used for setting the port for a server to listen on.
+In the root `index.js`, envigor only adds a few properties:
+
+- `port`, the value of the almost-inescapable `PORT` variable, used for setting
+  the port for a server to listen on
+- `ip`, the value of the `IP` variable, used in some environments to specify a
+  specific network interface to listen on
+- `database`, described in detail in the "database" section below
+- `env`, the environment variables used to construct the configuration
 
 Every other object in envigor is set by a script in `lib/cfg`, with a minimal
 overview described below (read the files themselves for full details as to the
@@ -261,6 +281,8 @@ cfg.postgresql = cfg.postgresql || cfg.database;
 ```
 
 ## database
+
+*(Per the note in the section introduction, this is added in index.js.)*
 
 The "database" hash, if present, contains the content of `env.DATABASE_URL` in
 its url field.
