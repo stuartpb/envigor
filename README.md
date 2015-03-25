@@ -305,8 +305,17 @@ Amazon Web Services
 
 Facebook App configuration
 
-- appId, clientId
+- appId, clientID
 - secret, clientSecret
+
+## reddit
+
+Reddit App configuration
+
+- username
+- password
+- appId, clientID, consumerKey, oauth.consumerKey
+- secret, clientSecret, consumerSecret, oauth.consumerSecret
 
 ## twitter
 

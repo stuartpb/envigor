@@ -22,6 +22,7 @@ module.exports = function (env) {
   require('./lib/cfg/arangodb.js')(env, cfg);
   require('./lib/cfg/bitcoin.js')(env, cfg);
   require('./lib/cfg/facebook.js')(env, cfg);
+  require('./lib/cfg/reddit.js')(env, cfg);
   require('./lib/cfg/twitter.js')(env, cfg);
   require('./lib/cfg/amazonaws.js')(env, cfg);
   require('./lib/cfg/twilio.js')(env, cfg);
