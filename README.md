@@ -67,6 +67,8 @@ it is provided as a binary with the library named `envigorate`. Using
 (And you can technically leave out that first line if you use `index.js`
 instead of `app.js`.)
 
+![freaky baby from a spanish milk commercial](http://i.imgur.com/IkKRoLd.jpg)
+
 ## Names
 
 The conventional names for the configuration variables queried for are based on
