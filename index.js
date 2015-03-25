@@ -1,6 +1,6 @@
 module.exports = function (env) {
   env = env || process.env;
-  var cfg = {};
+  var cfg = {env: env};
 
   cfg.port = env.PORT || env.VCAP_APP_PORT;
   cfg.ip = env.IP;
