@@ -9,17 +9,23 @@ This is useful for automatically deciding configuration options for
 [twelve-factor apps](http://12factor.net/) that run in environments like
 Heroku, where several different choices of addon can be provisioned to provide
 the same service: calling `envigor` will check the environment variables for
-all known services (and a general set of variables for any services that may be
-set up manually / in-house), then create a config object that will run that
-service regardless of provider (envigor objects can usually be passed directly
-to the setup function of multiple drivers).
+all known service providers (and a general set of variables for any services
+that may be set up manually / in-house), then create a config object that will
+connect to that service regardless of provider (envigor objects can usually be
+passed directly to the setup function of multiple drivers).
 
 ## Usage
 
+The constructor returned by `require('envigor')` takes an object of environment
+variables (using [`process.env`][1] by default), then returns a uniform object
+containing the configuration properties specified by that environment.
+
+[1]: https://iojs.org/api/process.html#process_process_env
+
 Say you're making an Express app with MongoDB, that you're writing for a
-service like Heroku, with addons like MongoLab to provide your more general
+platform like Heroku, with addons like MongoLab to provide your more general
 services like MongoDB. By using envigor, you can set your app up to find a
-configured MongoDB service with complete service agnosticism:
+configured MongoDB service with complete provider agnosticism:
 
 ```bash
 npm install --save envigor mongodb
