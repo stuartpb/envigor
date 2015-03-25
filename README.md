@@ -1,5 +1,7 @@
 # envigor
 
+[![Build Status](https://img.shields.io/travis/stuartpb/envigor.svg)](https://travis-ci.org/stuartpb/envigor)
+
 envigor is a module that creates configuration objects for several
 modules and backing services based on what environment variables are available.
 
