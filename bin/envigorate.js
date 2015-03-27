@@ -10,7 +10,7 @@ if (appctor.length == 2) {
     listen(app);
   });
 } else {
-  var app = appctor(cfg);
+  var app = new appctor(cfg);
   if (!app) {
     throw new Error('Got falsy value instead of app');
   } else if (typeof app.then == 'function') {
