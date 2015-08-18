@@ -338,3 +338,11 @@ reCAPTCHA - http://www.google.com/recaptcha
 
 - privateKey
 - publicKey
+
+## firebase
+
+https://www.firebase.com/
+
+- secret
+- url
+- appName

@@ -27,6 +27,7 @@ module.exports = function (env) {
   require('./lib/cfg/amazonaws.js')(env, cfg);
   require('./lib/cfg/twilio.js')(env, cfg);
   require('./lib/cfg/recaptcha.js')(env, cfg);
+  require('./lib/cfg/firebase.js')(env, cfg);
 
   return cfg;
 };
